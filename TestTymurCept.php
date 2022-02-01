@@ -23,8 +23,8 @@ $I->click("/html/body/div[5]/div/div/div[2]/div/a");
 
 $I->amGoingTo('Upload a file with an invalid format in the "Резюме" block, and check that a message appears on the page stating that the image format is incorrect.');
 $I->waitForElementClickable("//*[@id='upload']", 15);
-# $I->click("//*[@id='upload']");
 $I->attachFile('//*[@id="upload"]', 'Testimg.jpeg');
+# так просто загрузить картинку невыходит, до проверки текста и не дошло.
 
 
 $I->amGoingTo('fill in the block "3. Личные данные" with random data.');
@@ -39,16 +39,16 @@ $I->click("//*[@id='submit']");
 
 
 $I->amGoingTo('Check that the message on the current page - "Все поля являются обязательными для заполнения" - is highlighted in red. ');
-$I->wait(2);
-# $I->see('Все поля являются обязательными для заполнения', '#FF0000'); 
+# и тут не справился
 
 
 $I->amGoingTo('the "Курсы" page by clicking the appropriate button in the menu and make sure that the desired page opens. ');
+# кнопка "Курсы" отсутствут, предположил, что вмето неё "Интернатура"
 $I->click("//*[@id='main-menu']/ul/li[3]/a");
 $I->wait(2);
-$I->seeInCurrentUrl('school');
+$I->seeElement('//*[@id="hero"]/div/div/h1');
 
+$I->amGoingTo("say that this autotest is terrible, like it was expected from my first codeception autotest.");
 
-$I->wait(6);
 
 ?>
